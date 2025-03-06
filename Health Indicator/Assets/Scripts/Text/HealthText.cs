@@ -2,34 +2,15 @@ using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(TextMeshProUGUI))]
-public class HealthText : MonoBehaviour
+public class HealthText : HealthView
 {
-    [SerializeField] private Health _health;
-
-    private TextMeshProUGUI _healthText;
-
-    private void Awake()
-    {
-        _healthText = GetComponent<TextMeshProUGUI>();
-    }
-
-    private void OnEnable()
-    {
-        _health.HealthChanged += UpdateHealth;
-    }
-
-    private void OnDisable()
-    {
-        _health.HealthChanged -= UpdateHealth;
-    }
-
     private void Start()
     {
-        UpdateHealth();
+        UpdateHealth(_health.CurrentValue);
     }
 
-    private void UpdateHealth()
+    protected override void UpdateHealth(int currentValue)
     {
-        _healthText.text = $"{_health.CurrentHealth}/{_health.MaxHealth}";
+        _healthText.text = $"{_health.CurrentValue}/{_health.MaxValue}";
     }
 }

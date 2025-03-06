@@ -1,8 +1,13 @@
-public class HealthRestore : Handler
+public class HealthRestore : EventHandler
 {
     private const int _heal = 10;
 
-    protected override void DamageOrHeal()
+    protected override void HandleAction()
+    {
+        Heal();
+    }
+
+    private void Heal()
     {
         _health.Heal(_heal);
     }

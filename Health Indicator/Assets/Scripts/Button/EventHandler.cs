@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class Handler : MonoBehaviour
+public abstract class EventHandler : MonoBehaviour
 {
     [SerializeField] protected Health _health;
 
@@ -14,13 +14,13 @@ public abstract class Handler : MonoBehaviour
 
     protected void OnEnable()
     {
-        _button.onClick.AddListener(DamageOrHeal);
+        _button.onClick.AddListener(HandleAction);
     }
 
     protected void OnDisable()
     {
-        _button.onClick.RemoveListener(DamageOrHeal);
+        _button.onClick.RemoveListener(HandleAction);
     }
 
-    protected abstract void DamageOrHeal();
+    protected abstract void HandleAction();
 }
